@@ -15,6 +15,8 @@ import urllib.request
 webpage = "http://api.icndb.com/jokes/random/"
 jokelist = []
 jokeid = 0
+
+
 @app.route('/')
 def joke_fun():
 	for index in range(10):
@@ -25,19 +27,20 @@ def joke_fun():
 		end = strtext.find('"categories"')-3
 		#jokeid = index
 		jokelist.append(strtext[begin:end])
-	print("10 jokes created!")
+	return "10 jokes created!"
 
 @app.route('/getJokes')
 def get_jokes():
-    for joke in jokelist:
-        print(joke)
+    return str(jokelist)
+    #for joke in jokelist:
+    #    print(joke)
         
 @app.route('/flushJokes')
 def flush_jokes():
     for index in range(len(jokelist)):
         #print(index)
         jokelist.pop(0)
-    print("Jokes flushed!")
+    return "Jokes flushed!"
         
     
 @app.route('/getNewJokes')
@@ -45,7 +48,8 @@ def get_new_jokes():
     if len(jokelist)>1:
         flush_jokes()
     joke_fun()
-    print("New jokes added!")
+    return "New jokes added!"
 	
 #if __name__=='__main__':
 #    app.run()
+
