@@ -3,6 +3,8 @@ Created on Fri Dec 15 15:05:34 2017
 
 @author: tende
 """
+# pip install flask
+# pip install bs4
 
 from flask import Flask
 app = Flask(__name__)
@@ -23,6 +25,7 @@ def joke_fun():
 		end = strtext.find('"categories"')-3
 		#jokeid = index
 		jokelist.append(strtext[begin:end])
+	print("10 jokes created!")
 
 @app.route('/getJokes')
 def get_jokes():
@@ -43,3 +46,6 @@ def get_new_jokes():
         flush_jokes()
     joke_fun()
     print("New jokes added!")
+	
+#if __name__=='__main__':
+#    app.run()
